@@ -1,6 +1,8 @@
 package otpgenerator.services;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
+import java.util.UUID;
+
 import otpgenerator.dao.IOtpDao;
 import otpgenerator.models.RequestOtp;
 import otpgenerator.models.SavedOtpData;
@@ -26,9 +28,9 @@ public class OtpService implements IOtpService {
         Integer otp = createdOtpData.get(uniqueString);        
         SavedOtpData newOtpRequest = SavedOtpData.NewOtpRequestToSaveData(
             uniqueString, requestOtp.GetSendType(), requestOtp.GetSendTo());
-        var id = _otpDao.SaveNewRecord(newOtpRequest).toString();
+        String id = _otpDao.SaveNewRecord(newOtpRequest).toString();
         createdOtpData.remove(uniqueString);
-        createdOtpData.put(id.toString(), otp);
+        createdOtpData.put(id, otp);
         return createdOtpData;
     }
 

@@ -12,8 +12,7 @@ public class GenerateOtp {
 
     public static HashMap<String, Integer> ProcessNewRequest(SendType type, String sendTo) {
 
-        var utcTime = Instant.now();
-        String currentTimeMillis = utcTime.toEpochMilli() + "";
+        String currentTimeMillis = Instant.now().toEpochMilli() + "";
         String uniqueString = getUniqueKey(currentTimeMillis, type, sendTo);
         int shortCode = getCode(uniqueString);
         return new HashMap<String, Integer>()

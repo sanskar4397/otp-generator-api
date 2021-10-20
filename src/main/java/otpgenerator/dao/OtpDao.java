@@ -51,7 +51,7 @@ public class OtpDao implements IOtpDao {
         int tableSize = _savedDataTable.size();
 
         if(tableSize > 100) {
-            var key = _savedDataTable.keySet().toArray()[0];
+            Object key = _savedDataTable.keySet().toArray()[0];
             _savedDataTable.remove(key);
         }
     }
